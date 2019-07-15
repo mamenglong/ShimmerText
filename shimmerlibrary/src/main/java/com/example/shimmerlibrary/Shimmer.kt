@@ -1,7 +1,8 @@
-package com.xjlmh.classic.view
+package com.example.shimmerlibrary
 
 import android.graphics.*
-import com.example.shimmerlibrary.Logger
+import com.xjlmh.classic.view.ShimmerStyle
+
 class Shimmer() : ShimmerStyle {
 
 
@@ -122,4 +123,5 @@ class Shimmer() : ShimmerStyle {
         Logger.i("Shimmer","content:$content mViewWidth:$mViewWidth isAnimating:$isAnimating :mTranslate:$mTranslate  tileMode：$tileMode mWidthDivideBy:$mWidthDivideBy colors:${colors.toList()} positions:${positions.toList()}")
     }
     fun getContent()=content
+    fun setContent(string: String)={  content =string}
 }

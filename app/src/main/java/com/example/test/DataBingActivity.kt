@@ -24,5 +24,6 @@ class DataBingActivity : AppCompatActivity() {
                 user.name.set("menglong${Random().nextInt()}" )
                 update.text="刷新${user.name.get()}"
         }
+
     }
 }
