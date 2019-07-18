@@ -8,6 +8,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+            android:name="org.litepal.LitePalApplication"
             android:theme="@style/AppTheme">
         <activity android:name=".MVPTestActivity">
         </activity>
@@ -20,6 +21,19 @@
         </activity>
         <activity android:name=".DataBingActivity">
         </activity>
+        <service
+                android:name=".service.MyAccessibilityService"
+                android:description="@string/app_name"
+                android:enabled="@bool/use_accessibility_service"
+                android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.accessibilityservice"
+                    android:resource="@xml/accessibility"/>
+        </service>
     </application>
 
 </manifest>

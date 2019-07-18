@@ -19,6 +19,7 @@ class ShimmerTextView: TextView {
         super.onSizeChanged(w, h, oldw, oldh)
         shimmer.mPaint= Paint()
         shimmer1.setPaint(paint)
+        shimmer1.setTextSize(60f)
         shimmer1.setContent("nihao")
         //shimmer.textSize=60f
 //        shimmer.mViewWidth=measuredWidth

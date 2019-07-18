@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Test</string>
+    <bool name="use_accessibility_service">false</bool>
+
 </resources>

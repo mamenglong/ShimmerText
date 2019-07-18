@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_launcher.*
 class LauncherActivity : AppCompatActivity() {
 
     private val map= mutableMapOf<String,Class<*>>()
+    private val fcMap= mutableMapOf<String,String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
@@ -23,6 +24,15 @@ class LauncherActivity : AppCompatActivity() {
             btn.setOnClickListener {
 
                 startActivity(Intent(this,entry.value))
+            }
+            mainView.addView(btn)
+        }
+        fcMap["Accessibility"]= "无障碍服务"
+        fcMap.forEach{entry->
+            val btn=Button(this)
+            btn.text=entry.key
+            btn.setOnClickListener {
+                //
             }
             mainView.addView(btn)
         }
