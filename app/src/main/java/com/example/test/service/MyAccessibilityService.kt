@@ -7,9 +7,15 @@ import android.view.accessibility.AccessibilityEvent
 import com.example.test.showToast
 import java.util.logging.LogManager
 import java.util.logging.Logger
+import kotlin.properties.Delegates
 
 class MyAccessibilityService : AccessibilityService() {
-    var instances:MyAccessibilityService?=null
+    fun logi(msg: String){
+        Log.i(TAG,msg)
+    }
+    companion object{
+    var instances:MyAccessibilityService by Delegates.notNull()
+    }
     private val TAG=MyAccessibilityService::class.java.simpleName
     override fun onInterrupt() {
         Log.i(TAG,"onInterrupt")
@@ -22,8 +28,10 @@ class MyAccessibilityService : AccessibilityService() {
                 Log.i(TAG,"TYPE_VIEW_CLICKED")
             }
             AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED -> {
-                showToast("${p0.packageName} \n ${p0.className}")
-                Log.i(TAG,"${p0.packageName} \n ${p0.className}")
+                val result= "${p0.packageName} \n ${p0.className}"
+                FloatWindowService.setText(result)
+                showToast(result)
+                Log.i(TAG,result)
             }
             null -> {
 
@@ -34,8 +42,6 @@ class MyAccessibilityService : AccessibilityService() {
 
     override fun onUnbind(intent: Intent?): Boolean {
         Log.i(TAG,"onUnbind")
-        instances=null
-
         return super.onUnbind(intent)
     }
 
