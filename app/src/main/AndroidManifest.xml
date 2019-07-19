@@ -47,6 +47,11 @@
                 <action android:name="com.example.test.receiver.ACTION_NOTIFICATION_RECEIVER"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".receiver.BR">
+            <intent-filter>
+                <action android:name="br"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ class NotificationActionReceiver : BroadcastReceiver() {
                 Intent(context, NotificationActivity::class.java),
                 0
             )
-            val builder = NotificationCompat.Builder(context)
+            val builder = NotificationCompat.Builder(context,"default")
                 .setContentTitle(
                     context.getString(
                         R.string.is_running,
