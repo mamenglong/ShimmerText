@@ -1,16 +1,23 @@
 package com.example.test
 
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_launcher.*
+import android.widget.Toast
+import com.example.test.service.FloatWindowService
+
 
 class LauncherActivity : AppCompatActivity() {
     private val TAG=LauncherActivity::class.java.simpleName
@@ -44,6 +51,7 @@ class LauncherActivity : AppCompatActivity() {
                     val accessibleIntent =  Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
                     startActivity(accessibleIntent)
                 }
+                startFloatingService()
             }
             mainView.addView(btn)
         }
@@ -57,12 +65,40 @@ class LauncherActivity : AppCompatActivity() {
             AccessibilityServiceInfo.FEEDBACK_ALL_MASK
         )
         for (info in accessibilityServices) {
-            if (info.id.contains("com.example.test.service.MyAccessibilityService")) {
+            if (info.id.contains("com.example.test/.service.MyAccessibilityService")) {
                 return true
             }
         }
         return false
     }
-    //打开系统无障碍设置界面
 
+    @TargetApi(Build.VERSION_CODES.M)
+    fun startFloatingService() {
+        if (FloatWindowService.isStarted) {
+            return
+        }
+        if (!Settings.canDrawOverlays(this)) {
+            showToast("当前无权限，请授权")
+            startActivityForResult(
+                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName")),
+                0
+            )
+        } else {
+            startService(Intent(this, FloatWindowService::class.java))
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 0) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show()
+                startService(Intent(this, FloatWindowService::class.java))
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 }

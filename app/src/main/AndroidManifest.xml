@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.test">
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -37,6 +37,7 @@
                     android:name="android.accessibilityservice"
                     android:resource="@xml/accessibility_service_config"/>
         </service>
+        <service android:name=".service.FloatWindowService"/>
     </application>
 
 </manifest>
