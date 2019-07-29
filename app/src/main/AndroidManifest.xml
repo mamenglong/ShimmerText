@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.example.test">
 
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
@@ -15,20 +16,44 @@
             android:theme="@style/AppTheme">
         <activity android:name=".StageActivity">
         </activity>
-        <activity android:name=".NotificationActivity">
+        <activity android:name=".activity.NotificationActivity"
+
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning"/>
+        <activity android:name=".activity.ColorPickerActivity">
+
         </activity>
-        <activity android:name=".MVPTestActivity">
+        <activity
+                android:name=".activity.SettingsActivity"
+                android:label="@string/title_activity_settings">
         </activity>
-        <activity android:name=".LauncherActivity">
+
+        <receiver android:name=".activity.DesktopWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.example.test.app_widget_update_time"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/desktop_widget_info"/>
+        </receiver>
+
+        <activity android:name=".activity.NotificationActivity">
+        </activity>
+        <activity android:name=".activity.MVPTestActivity">
+        </activity>
+        <activity android:name=".activity.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DataBingActivity">
+        <activity android:name=".activity.DataBingActivity">
         </activity>
 
+        <service android:name=".service.TimerWidgetService"/>
         <service
                 android:name=".service.MyAccessibilityService"
                 android:description="@string/app_name"

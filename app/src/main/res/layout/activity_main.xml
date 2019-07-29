@@ -3,12 +3,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".DataBingActivity">
+        tools:context=".activity.DataBingActivity">
 
     <data>
 
         <variable name="user"
-                  type="com.example.test.User"
+                  type="com.example.test.model.User"
         />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,18 +23,18 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-        <com.example.test.ShimmerTextView android:layout_width="wrap_content"
-                                          android:id="@+id/shimmer"
-                                          app:layout_constraintTop_toBottomOf="@id/hello"
-                                          android:text="Shimmer"
-                                          android:textSize="60dp"
-                                          app:layout_constraintStart_toStartOf="parent"
-                                          android:layout_height="wrap_content"/>
-           <com.example.test.M_TextView2 android:layout_width="wrap_content"
-                                         android:text="你好啊"
-                                         app:layout_constraintBottom_toTopOf="@id/update"
-                                         app:layout_constraintStart_toStartOf="parent"
-                                         android:layout_height="wrap_content"/>
+        <com.example.test.view.ShimmerTextView android:layout_width="wrap_content"
+                                               android:id="@+id/shimmer"
+                                               app:layout_constraintTop_toBottomOf="@id/hello"
+                                               android:text="Shimmer"
+                                               android:textSize="60dp"
+                                               app:layout_constraintStart_toStartOf="parent"
+                                               android:layout_height="wrap_content"/>
+           <com.example.test.view.M_TextView2 android:layout_width="wrap_content"
+                                              android:text="你好啊"
+                                              app:layout_constraintBottom_toTopOf="@id/update"
+                                              app:layout_constraintStart_toStartOf="parent"
+                                              android:layout_height="wrap_content"/>
         <TextView android:layout_width="match_parent"
               app:layout_constraintTop_toTopOf="parent"
               app:layout_constraintBottom_toBottomOf="@id/hello"

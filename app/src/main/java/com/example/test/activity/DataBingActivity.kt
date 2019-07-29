@@ -1,8 +1,10 @@
-package com.example.test
+package com.example.test.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.test.R
+import com.example.test.model.User
 import com.example.test.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -14,7 +16,7 @@ class DataBingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val databing:ActivityMainBinding= DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val user=User()
+        val user= User()
         user.apply {
             name.set("long")
             sex.set("boy")

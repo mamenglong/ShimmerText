@@ -1,13 +1,13 @@
-package com.example.test
+package com.example.test.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.test.R
 import com.example.test.mvp.IUserView
 import com.example.test.mvp.User
 import com.example.test.mvp.UserPresenter
 import kotlinx.android.synthetic.main.activity_mvptest.*
-import kotlin.math.log
 
 class MVPTestActivity : AppCompatActivity(),IUserView {
     lateinit var presenter:UserPresenter

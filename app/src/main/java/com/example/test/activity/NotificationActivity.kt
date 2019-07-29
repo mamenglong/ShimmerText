@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,6 +13,7 @@ import android.app.NotificationChannel
 import android.content.Context
 import android.os.Build
 import androidx.core.app.TaskStackBuilder
+import com.example.test.R
 
 
 class NotificationActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class NotificationActivity : AppCompatActivity() {
         //8.0 默认通知channelId default
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "default"
-            val channelName = "默认通知"
+            val channelName = "通知"
             manager.createNotificationChannel(
                 NotificationChannel(
                     channelId,
@@ -57,7 +58,8 @@ class NotificationActivity : AppCompatActivity() {
         val notification = NotificationCompat.Builder(this, "default")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("通知")
-            .setContentText("及时通知")
+            .setContentTitle("这是个通知")
+            .setContentText("通知")
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setWhen(System.currentTimeMillis())

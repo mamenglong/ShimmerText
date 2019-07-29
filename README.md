@@ -2,10 +2,13 @@
 
 * 库文件[shimmerlibrary](shimmerlibrary)
 
-* DataBinding[测试](app/src/main/java/com/example/test/DataBingActivity.kt)
+* DataBinding[测试](app/src/main/java/com/example/test/activity/DataBingActivity.kt)
 
-* MVP[测试](app/src/main/java/com/example/test/MVPTestActivity.kt)
-* MVP[测试](app/src/main/java/com/example/test/MVPTestActivity.kt)
+* MVP[测试](app/src/main/java/com/example/test/activity/MVPTestActivity.kt)
+* MVP[测试](app/src/main/java/com/example/test/activity/MVPTestActivity.kt)
 * [无障碍测试](app/src/main/java/com/example/test/service/MyAccessibilityService.kt)
-* [通知](app/src/main/java/com/example/test/NotificationActivity.kt)
+
+* [通知](app/src/main/java/com/example/test/activity/NotificationActivity.kt)
+* [设置](app/src/main/java/com/example/test/activity/SettingsActivity) 
+* [颜色选择](app/src/main/java/com/example/test/activity/ColorPickerActivity)      
 

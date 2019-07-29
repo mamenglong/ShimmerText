@@ -1,8 +1,7 @@
-package com.example.test
+package com.example.test.activity
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -11,16 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
 import android.view.accessibility.AccessibilityManager
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_launcher.*
 import android.widget.Toast
+import com.example.test.R
+import com.example.test.StageActivity
 import com.example.test.service.FloatWindowService
+import com.example.test.service.TimerWidgetService
+import com.example.test.showToast
 
 
 class LauncherActivity : AppCompatActivity() {
-    private val TAG=LauncherActivity::class.java.simpleName
+    private val TAG= LauncherActivity::class.java.simpleName
 
     private val map= mutableMapOf<String,Class<*>>()
     private val fcMap= mutableMapOf<String,String>()
@@ -28,11 +30,16 @@ class LauncherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
 
-        map["重启"]=LauncherActivity::class.java
-        map["DataBingTest"]=DataBingActivity::class.java
-        map["mvp测试"]=MVPTestActivity::class.java
-        map["通知测试"]=NotificationActivity::class.java
-        map["文字时钟"]=StageActivity::class.java
+
+
+        map["文字时钟"]= StageActivity::class.java
+
+        map["重启"]= LauncherActivity::class.java
+        map["DataBingTest"]= DataBingActivity::class.java
+        map["mvp测试"]= MVPTestActivity::class.java
+        map["通知测试"]= NotificationActivity::class.java
+        map["设置"]= SettingsActivity::class.java
+        map["颜色选择"]= ColorPickerActivity::class.java
         map.forEach{ entry ->
             val btn=Button(this)
             btn.text=entry.key
@@ -43,17 +50,27 @@ class LauncherActivity : AppCompatActivity() {
             mainView.addView(btn)
         }
         fcMap["Accessibility"]= "无障碍服务"
+        fcMap["DesktopWidget"] ="桌面插件"
         fcMap.forEach{entry->
             val btn=Button(this)
-            btn.text=entry.key
+            btn.text=entry.value
             btn.setOnClickListener {
-                //
-                Log.i(TAG,"Accessibility")
-                if (!isServiceEnabled()){
-                    val accessibleIntent =  Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-                    startActivity(accessibleIntent)
+                when(entry.key) {
+                    "Accessibility"-> {
+                        Log.i(TAG, "Accessibility")
+                        if (!isServiceEnabled()) {
+                            val accessibleIntent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+                            startActivity(accessibleIntent)
+                        }
+                        startFloatingService()
+                    }
+                    "DesktopWidget"->{
+                        Log.i(TAG, "DesktopWidget")
+                        val intent= Intent("com.example.test.app_widget_update_time").addFlags(0x01000000).putExtra("time", System.currentTimeMillis())
+                        sendBroadcast(intent)
+                        startService(Intent(this,TimerWidgetService::class.java))
+                    }
                 }
-                startFloatingService()
             }
             mainView.addView(btn)
         }
