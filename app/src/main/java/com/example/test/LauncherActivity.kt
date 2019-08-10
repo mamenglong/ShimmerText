@@ -32,6 +32,7 @@ class LauncherActivity : AppCompatActivity() {
         map["DataBingTest"]=DataBingActivity::class.java
         map["mvp测试"]=MVPTestActivity::class.java
         map["通知测试"]=NotificationActivity::class.java
+        map["文字时钟"]=StageActivity::class.java
         map.forEach{ entry ->
             val btn=Button(this)
             btn.text=entry.key

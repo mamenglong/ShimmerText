@@ -29,15 +29,15 @@ class NotificationActivity : AppCompatActivity() {
         intent.action="br"
         intent.addFlags(0x01000000)
         sendBroadcast(intent)
-        notification()
+//        notification()
     }
     private fun notification() {
         val intent = Intent(this, LauncherActivity::class.java)
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        //8.0 ??????channelId ??????
+        //8.0 默认通知channelId default
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "default"
-            val channelName = "????"
+            val channelName = "默认通知"
             manager.createNotificationChannel(
                 NotificationChannel(
                     channelId,
@@ -56,8 +56,8 @@ class NotificationActivity : AppCompatActivity() {
 
         val notification = NotificationCompat.Builder(this, "default")
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("??")
-            .setContentText("????????????")
+            .setContentTitle("通知")
+            .setContentText("及时通知")
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setWhen(System.currentTimeMillis())

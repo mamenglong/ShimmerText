@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.test.NotificationActivity
 import com.example.test.R
@@ -18,7 +19,7 @@ class NotificationActionReceiver : BroadcastReceiver() {
     val TAG=NotificationActionReceiver::class.java.simpleName
 
     companion object {
-        val NOTIFICATION_ID = 1
+        val NOTIFICATION_ID = 22
         val ACTION_NOTIFICATION_RECEIVER = "com.example.test.receiver.ACTION_NOTIFICATION_RECEIVER"
         val ACTION_PAUSE = 0
         val ACTION_RESUME = 1
@@ -69,7 +70,7 @@ class NotificationActionReceiver : BroadcastReceiver() {
 
         }
 
-        fun getPendingIntent(context: Context, command: Int): PendingIntent {
+        private fun getPendingIntent(context: Context, command: Int): PendingIntent {
             val intent = Intent(ACTION_NOTIFICATION_RECEIVER)
             intent.putExtra(EXTRA_NOTIFICATION_ACTION, command)
             return PendingIntent.getBroadcast(context, command, intent, 0)
@@ -81,6 +82,7 @@ class NotificationActionReceiver : BroadcastReceiver() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onReceive(context: Context, intent: Intent) {
         Log.i(TAG,"onReceive")
         when (intent.getIntExtra(EXTRA_NOTIFICATION_ACTION, -1)) {
