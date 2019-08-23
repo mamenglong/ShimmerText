@@ -11,6 +11,8 @@ fun showToast(msg:String)= run {
             Toast.makeText(TestApplication.instances,msg,Toast.LENGTH_SHORT).show()
     }
 }
+
+
 class Ext {
 
 }

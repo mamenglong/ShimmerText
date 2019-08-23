@@ -5,12 +5,14 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.widget.RemoteViews
 import android.app.PendingIntent
+import android.app.Service
 import android.content.Intent
 import com.example.test.R
 import com.example.test.service.TimerWidgetService
 import android.content.ComponentName
 import android.text.format.DateUtils
 import android.util.Log
+import com.example.test.service.ForegroundService
 
 
 /**
@@ -22,6 +24,9 @@ class DesktopWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         Log.i(TAG,"onUpdate")
         super.onUpdate(context, appWidgetManager, appWidgetIds)
+        val intent = Intent(context, TimerWidgetService::class.java)
+//        context.startForegroundService(intent.addFlags(0x01000000))
+//        context.startService( Intent(context, ForegroundService::class.java))
 //         There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)

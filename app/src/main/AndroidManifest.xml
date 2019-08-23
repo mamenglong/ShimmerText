@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.test">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.example.test">
 
-    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
             android:name=".TestApplication"
@@ -17,43 +17,45 @@
         <activity android:name=".StageActivity">
         </activity>
         <activity android:name=".activity.NotificationActivity"
-
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"/>
         <activity android:name=".activity.ColorPickerActivity">
 
         </activity>
+        <activity android:name=".activity.RoomTestActivity"></activity>
+
+        <service
+                android:name=".service.DevilService"
+                android:enabled="true"
+                android:exported="true"></service>
+
+
         <activity
                 android:name=".activity.SettingsActivity"
-                android:label="@string/title_activity_settings">
-        </activity>
+                android:label="@string/title_activity_settings"></activity>
 
         <receiver android:name=".activity.DesktopWidget">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.example.test.app_widget_update_time"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.test.app_widget_update_time" />
             </intent-filter>
 
             <meta-data
                     android:name="android.appwidget.provider"
-                    android:resource="@xml/desktop_widget_info"/>
+                    android:resource="@xml/desktop_widget_info" />
         </receiver>
 
-        <activity android:name=".activity.NotificationActivity">
-        </activity>
-        <activity android:name=".activity.MVPTestActivity">
-        </activity>
+        <activity android:name=".activity.MVPTestActivity"></activity>
         <activity android:name=".activity.LauncherActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DataBingActivity">
-        </activity>
+        <activity android:name=".activity.DataBingActivity"></activity>
 
-        <service android:name=".service.TimerWidgetService"/>
+        <service android:name=".service.TimerWidgetService" />
         <service
                 android:name=".service.MyAccessibilityService"
                 android:description="@string/app_name"
@@ -61,23 +63,24 @@
                 android:exported="true"
                 android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService"/>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
 
             <meta-data
                     android:name="android.accessibilityservice"
-                    android:resource="@xml/accessibility_service_config"/>
+                    android:resource="@xml/accessibility_service_config" />
         </service>
-        <service android:name=".service.FloatWindowService"/>
+        <service android:name=".service.FloatWindowService" />
+        <service android:name=".service.ForegroundService" />
 
         <receiver android:name=".receiver.NotificationActionReceiver">
             <intent-filter>
-                <action android:name="com.example.test.receiver.ACTION_NOTIFICATION_RECEIVER"/>
+                <action android:name="com.example.test.receiver.ACTION_NOTIFICATION_RECEIVER" />
             </intent-filter>
         </receiver>
         <receiver android:name=".receiver.BR">
             <intent-filter>
-                <action android:name="br"/>
+                <action android:name="br" />
             </intent-filter>
         </receiver>
     </application>

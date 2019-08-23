@@ -40,6 +40,7 @@ class LauncherActivity : AppCompatActivity() {
         map["通知测试"]= NotificationActivity::class.java
         map["设置"]= SettingsActivity::class.java
         map["颜色选择"]= ColorPickerActivity::class.java
+        map["RoomTest"]= RoomTestActivity::class.java
         map.forEach{ entry ->
             val btn=Button(this)
             btn.text=entry.key
