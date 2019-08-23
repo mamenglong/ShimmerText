@@ -114,7 +114,7 @@ class StageActivity : AppCompatActivity() {
     /**
      * 保存参数数据
      */
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         if (::mArgParams.isInitialized) {
             outState?.putSerializable(ARG_PARAMS, mArgParams)
